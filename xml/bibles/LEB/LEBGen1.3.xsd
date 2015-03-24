@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="leb" type="lebType"/>
+  <xs:complexType name="chapterType">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element name="pericope">
+        <xs:complexType mixed="true">
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element type="aType" name="a"/>
+            <xs:element name="i">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="Lexham Hebrew–English Interlinear Bible"/>
+                  <xs:enumeration value="Lexham Greek–English Interlinear New Testament"/>
+                  <xs:enumeration value="The Hebrew and Aramaic Lexicon of the Old Testament"/>
+                  <xs:enumeration value="A Greek–English Lexicon of the New Testament and Other Early Christian Literature"/>
+                  <xs:enumeration value="Biblia Hebraica Stuttgartensia"/>
+                  <xs:enumeration value="The Greek New Testament: SBL Edition"/>
+                  <xs:enumeration value="is"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element type="xs:string" name="idiom-start"/>
+            <xs:element name="idiom-end">
+              <xs:complexType mixed="true">
+                <xs:sequence>
+                  <xs:element name="supplied" maxOccurs="unbounded" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:enumeration value="is"/>
+                        <xs:enumeration value="collective: humankind"/>
+                        <xs:enumeration value="one"/>
+                        <xs:enumeration value="“one of us”"/>
+                        <xs:enumeration value="all"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element type="citeType" name="cite"/>
+            <xs:element type="verse-numberType" name="verse-number"/>
+            <xs:element name="note">
+              <xs:complexType>
+                <xs:simpleContent>
+                  <xs:extension base="xs:string">
+                    <xs:attribute type="xs:string" name="id" use="optional"/>
+                  </xs:extension>
+                </xs:simpleContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="supplied">
+              <xs:complexType mixed="true">
+                <xs:sequence>
+                  <xs:element type="citeType" name="cite" minOccurs="0"/>
+                  <xs:element name="supplied" maxOccurs="unbounded" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:enumeration value="is"/>
+                        <xs:enumeration value="collective: humankind"/>
+                        <xs:enumeration value="one"/>
+                        <xs:enumeration value="“one of us”"/>
+                        <xs:enumeration value="all"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+                <xs:attribute type="xs:string" name="id" use="optional"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+      <xs:element type="pType" name="p"/>
+      <xs:element type="ulType" name="ul"/>
+    </xs:choice>
+    <xs:attribute type="xs:string" name="id" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="citeType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="title" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="trademarkType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="p"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="bookType">
+    <xs:sequence>
+      <xs:element type="chapterType" name="chapter" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="id"/>
+  </xs:complexType>
+  <xs:complexType name="aType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="href" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ulType" mixed="true">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="li1Type" name="li1"/>
+      <xs:element name="li2">
+        <xs:complexType mixed="true">
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element type="xs:string" name="idiom-start"/>
+            <xs:element type="xs:string" name="idiom-end"/>
+            <xs:element type="noteType" name="note"/>
+            <xs:element type="verse-numberType" name="verse-number"/>
+            <xs:element name="supplied">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="will be"/>
+                  <xs:enumeration value="on the"/>
+                  <xs:enumeration value="shall be"/>
+                  <xs:enumeration value="from"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="prefaceType">
+    <xs:sequence>
+      <xs:element name="p" maxOccurs="unbounded" minOccurs="0">
+        <xs:complexType mixed="true">
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element type="aType" name="a"/>
+            <xs:element name="i">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="Lexham Hebrew–English Interlinear Bible"/>
+                  <xs:enumeration value="Lexham Greek–English Interlinear New Testament"/>
+                  <xs:enumeration value="The Hebrew and Aramaic Lexicon of the Old Testament"/>
+                  <xs:enumeration value="A Greek–English Lexicon of the New Testament and Other Early Christian Literature"/>
+                  <xs:enumeration value="Biblia Hebraica Stuttgartensia"/>
+                  <xs:enumeration value="The Greek New Testament: SBL Edition"/>
+                  <xs:enumeration value="is"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element type="xs:string" name="idiom-start"/>
+            <xs:element name="idiom-end">
+              <xs:complexType mixed="true">
+                <xs:sequence>
+                  <xs:element name="supplied" maxOccurs="unbounded" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:enumeration value="is"/>
+                        <xs:enumeration value="collective: humankind"/>
+                        <xs:enumeration value="one"/>
+                        <xs:enumeration value="“one of us”"/>
+                        <xs:enumeration value="all"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element type="citeType" name="cite"/>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="noteType" mixed="true">
+    <xs:sequence>
+      <xs:element type="citeType" name="cite" minOccurs="0"/>
+      <xs:element name="supplied" maxOccurs="unbounded" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="is"/>
+            <xs:enumeration value="collective: humankind"/>
+            <xs:enumeration value="one"/>
+            <xs:enumeration value="“one of us”"/>
+            <xs:enumeration value="all"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="id" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="titleType">
+    <xs:sequence>
+      <xs:element name="p" maxOccurs="unbounded" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="The Lexham English Bible"/>
+            <xs:enumeration value="W. Hall Harris III"/>
+            <xs:enumeration value="Copyright 2010, 2012 Logos Bible Software"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="li2Type" mixed="true">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="xs:string" name="idiom-start" minOccurs="0"/>
+      <xs:element type="xs:string" name="idiom-end" minOccurs="0"/>
+      <xs:element type="noteType" name="note" minOccurs="0"/>
+      <xs:element type="verse-numberType" name="verse-number"/>
+      <xs:element name="supplied">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="will be"/>
+            <xs:enumeration value="on the"/>
+            <xs:enumeration value="shall be"/>
+            <xs:enumeration value="from"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="verse-numberType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="id" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="pType" mixed="true">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="aType" name="a"/>
+      <xs:element name="i">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Lexham Hebrew–English Interlinear Bible"/>
+            <xs:enumeration value="Lexham Greek–English Interlinear New Testament"/>
+            <xs:enumeration value="The Hebrew and Aramaic Lexicon of the Old Testament"/>
+            <xs:enumeration value="A Greek–English Lexicon of the New Testament and Other Early Christian Literature"/>
+            <xs:enumeration value="Biblia Hebraica Stuttgartensia"/>
+            <xs:enumeration value="The Greek New Testament: SBL Edition"/>
+            <xs:enumeration value="is"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element type="xs:string" name="idiom-start"/>
+      <xs:element name="idiom-end">
+        <xs:complexType mixed="true">
+          <xs:sequence>
+            <xs:element name="supplied" maxOccurs="unbounded" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="is"/>
+                  <xs:enumeration value="collective: humankind"/>
+                  <xs:enumeration value="one"/>
+                  <xs:enumeration value="“one of us”"/>
+                  <xs:enumeration value="all"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element type="citeType" name="cite"/>
+      <xs:element type="verse-numberType" name="verse-number"/>
+      <xs:element name="note">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute type="xs:string" name="id" use="optional"/>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="supplied">
+        <xs:complexType mixed="true">
+          <xs:sequence>
+            <xs:element type="citeType" name="cite" minOccurs="0"/>
+            <xs:element name="supplied" maxOccurs="unbounded" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="is"/>
+                  <xs:enumeration value="collective: humankind"/>
+                  <xs:enumeration value="one"/>
+                  <xs:enumeration value="“one of us”"/>
+                  <xs:enumeration value="all"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+          <xs:attribute type="xs:string" name="id" use="optional"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="licenseType">
+    <xs:sequence>
+      <xs:element name="p" maxOccurs="unbounded" minOccurs="0">
+        <xs:complexType mixed="true">
+          <xs:sequence>
+            <xs:element type="aType" name="a"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="li1Type" mixed="true">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="xs:string" name="idiom-start"/>
+      <xs:element type="xs:string" name="idiom-end"/>
+      <xs:element type="noteType" name="note"/>
+      <xs:element type="verse-numberType" name="verse-number"/>
+      <xs:element name="supplied">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="on the"/>
+            <xs:enumeration value="will be"/>
+            <xs:enumeration value="shall be"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="lebType">
+    <xs:sequence>
+      <xs:element type="titleType" name="title"/>
+      <xs:element type="licenseType" name="license"/>
+      <xs:element type="trademarkType" name="trademark"/>
+      <xs:element type="prefaceType" name="preface"/>
+      <xs:element type="bookType" name="book"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
